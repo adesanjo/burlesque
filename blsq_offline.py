@@ -146,7 +146,7 @@ def interpret(stack,code):
             else:
                 stack.append([b[j]//a[j] if isinstance(a[j],int) and isinstance(b[j],int) else b[j]/a[j] for j in range(min(len(a),len(b)))])
         elif i==".%":
-            a,b==stack.pop(),stack.pop()
+            a,b=stack.pop(),stack.pop()
             stack.append(b%a)
         elif i==".<":
             stack.append(int(stack.pop()>stack.pop()))
