@@ -126,7 +126,8 @@ def interpret(stack,code):
                 l=[]
                 for j in range(min(len(a),len(b))):
                     interpret(l,[b[j],a[j],"?+"])
-                stack.append(l)
+                #stack.append(l)
+                stack.append([str(j) if not isinstance(j,list) else j for j in l])
         elif i=="?-":
             a=stack.pop()
             b=stack.pop()
@@ -136,7 +137,8 @@ def interpret(stack,code):
                 l=[]
                 for j in range(min(len(a),len(b))):
                     interpret(l,[b[j],a[j],"?-"])
-                stack.append(l)
+                #stack.append(l)
+                stack.append([str(j) if not isinstance(j,list) else j for j in l])
         elif i=="?*":
             a=stack.pop()
             b=stack.pop()
@@ -146,7 +148,8 @@ def interpret(stack,code):
                 l=[]
                 for j in range(min(len(a),len(b))):
                     interpret(l,[b[j],a[j],"?*"])
-                stack.append(l)
+                #stack.append(l)
+                stack.append([str(j) if not isinstance(j,list) else j for j in l])
         elif i=="?/":
             a,b=stack.pop(),stack.pop()
             if isinstance(a,int) and isinstance(b,int):
@@ -157,7 +160,8 @@ def interpret(stack,code):
                 l=[]
                 for j in range(min(len(a),len(b))):
                     interpret(l,[b[j],a[j],"?/"])
-                stack.append(l)
+                #stack.append(l)
+                stack.append([str(j) if not isinstance(j,list) else j for j in l])
         elif i==".%":
             a,b=stack.pop(),stack.pop()
             stack.append(b%a)
@@ -252,7 +256,8 @@ def interpret(stack,code):
             for j in b:
                 interpret(l,[j])
                 interpret(l,c)
-            stack.append(l)
+            #stack.append(l)
+            stack.append([str(j) if not isinstance(j,list) else j for j in l])
         elif i=="Z]":
             l=[]
             c=stack.pop()
@@ -261,7 +266,8 @@ def interpret(stack,code):
             for j in range(min(len(a),len(b))):
                 interpret(l,[b[j],a[j]])
                 interpret(l,c)
-            stack.append(l)
+            #stack.append(l)
+            stack.append([str(j) if not isinstance(j,list) else j for j in l])
         elif i=="r[":
             c=stack.pop()
             b=stack.pop()
