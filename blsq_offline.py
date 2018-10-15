@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 import argparse
 
 parser=argparse.ArgumentParser()
@@ -307,6 +308,9 @@ if __name__=="__main__":
         try:
             code=input("> ")
             while code!="exit":
+                if code=="clear":
+                    os.system("clear")
+                    continue
                 stack=[]
                 interpret(stack,parseCode(code))
                 if DEBUG:print("Output:")
