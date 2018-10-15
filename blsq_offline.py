@@ -310,6 +310,7 @@ if __name__=="__main__":
             while code!="exit":
                 if code=="clear":
                     os.system("clear")
+                    code=input("> ")
                     continue
                 stack=[]
                 interpret(stack,parseCode(code))
