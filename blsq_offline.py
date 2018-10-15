@@ -15,7 +15,7 @@ if DEBUG:print("Offline Burlesque Interpreter: WIP!")
 
 TOKENS={'!!','!=','!C','!~','#<','$$','&&','**','++','+.','+]','-.','-]','-~','.%','.*','.+','.-','./','.<','.>','/^','/v',';;','<-','<.','<=','<>','<]','<m','==','=[','=s','=~','>.','><','>=','>]','>m','?!','?*','?+','?-','?/','??','?^','?d','?i','?s','AV','B!','BS','Bc','Bp','C!','CB','CL','CM','CN','CO','CW','Cl','Cm','D!','DW','E!','F:','FF','FL','FM','FO','FZ','Ff','Fi','GO','GZ','HD','IC','IN','LD','LG','LI','LO','L[','M-','MP','MV','M[','M]','NB','PD','PI','P[','R@','RA','RN','RT','R_','R~','SD','SH','SI','SO','SP','S[','Sc','Sd','Sh','Sn','Sq','Su','Sw','TC','TS','TT','TW','Tc','Ts','Tt','UN','U[','U_','WD','WL','WW','W[','Wl','XX','ZZ','Z[','Z]','[+','[-','[M','[P','[S','[[','[]','[m','[~','j','\\[','\\\\','\\m',']m','^/','J','^m','^p','_+','aa','ab','ad','al','an','ap','av','ay','b0','b2','b6','bc','bs','bx','c!','cb','cc','cd','ch','ck','cl','cm','cn','co','cp','cq','ct','cy','d!','dg','di','dv','dw','e!','ec','ed','en','eq','es','f:','fC','fI','f[','fc','fe','ff','fi','fl','fo','fp','fu','fw','f~','gB','g_','gb','gc','gl','gn','gp','gr','gs','gw','hc','hd','hp','iR','iS','iT','ia','ic','ie','if','im','is','it','l0','l2','l_','ld','lg','ln','lp','m$','m&','m[','m]','m^','mm','mo','mp','ms','mu','mw','m|','n!','nc','nd','ng','nq','nr','nu','nz','p^','pa','pc','pd','pe','pm','pp','ps','pt','r&','r0','r1','r@','r[','r\\','r_','ra','rd','ri','rm','rn','ro','rp','rt','rz','r|','r~','#r','#R','s=','sH','sN','sa','sb','sc','sg','shQ','si','sl','sm','sn','so','sp','sr','ss','su','sw','t[','t]','td','th','ti','tl','to','tp','tt','tw','uN','u[','uc','ud','ug','un','uq','v/','vr','vv','w!','wD','wL','w[','wd','wl','ww','x/','z?','z[','zi','zz','|*','|+','|-','|/','|d','|i','||','~!','~&','~-','~;','~=','~?','~[','~]','~a','~~','{','}'}
 
-IMPLEMENTED_TOKENS={"{","}","vv","j","J","x/","#r","#R","?+","?-","?*","?/",".%",".<",".>","==","!=","n!","<-","NB","<>","=[","e!","Q","sh","ps","++","if","ie","m[","z[","Z[","Z]","r[","f[","r@",".+"}
+IMPLEMENTED_TOKENS={"{","}","vv","j","J","x/","#r","#R","?+","?-","?*","?/",".%",".<",".>","==","!=","n!","<-","NB","<>","=[","e!","Q","sh","ps","++","if","ie","m[","z[","Z[","Z]","r[","f[","r@",".+","L["}
 
 if DEBUG:
     print("Unimplemented tokens:")
@@ -286,6 +286,8 @@ def interpret(stack,code):
         elif i==".+":
             a,b=stack.pop(),stack.pop()
             stack.append(b+a)
+        elif i=="L[":
+            stack.append(len(stack.pop()))
         if DEBUG:print("stack:",stack)
     if DEBUG:
         print("finished interpreting:",code)
