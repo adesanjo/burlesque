@@ -122,29 +122,41 @@ def interpret(stack,code):
             if isinstance(a,int) and isinstance(b,int):
                 stack.append(b+a)
             else:
-                stack.append([b[j]+a[j] for j in range(min(len(a),len(b)))])
+                l=[]
+                for j in range(min(len(a),len(b))):
+                    interpret(l,[b[j],a[j],"?+"])
+                stack.append(l)
         elif i=="?-":
             a=stack.pop()
             b=stack.pop()
             if isinstance(a,int) and isinstance(b,int):
                 stack.append(b-a)
             else:
-                stack.append([b[j]-a[j] for j in range(min(len(a),len(b)))])
+                l=[]
+                for j in range(min(len(a),len(b))):
+                    interpret(l,[b[j],a[j],"?-"])
+                stack.append(l)
         elif i=="?*":
             a=stack.pop()
             b=stack.pop()
             if isinstance(a,int) and isinstance(b,int):
                 stack.append(b*a)
             else:
-                stack.append([b[j]*a[j] for j in range(min(len(a),len(b)))])
+                l=[]
+                for j in range(min(len(a),len(b))):
+                    interpret(l,[b[j],a[j],"?*"])
+                stack.append(l)
         elif i=="?/":
             a,b=stack.pop(),stack.pop()
             if isinstance(a,int) and isinstance(b,int):
-                stack.append(a//b)
+                stack.append(b//a)
             elif isinstance(a,float) or isinstance(b,float):
                 stack.append(b/a)
             else:
-                stack.append([b[j]//a[j] if isinstance(a[j],int) and isinstance(b[j],int) else b[j]/a[j] for j in range(min(len(a),len(b)))])
+                l=[]
+                for j in range(min(len(a),len(b))):
+                    interpret(l,[b[j],a[j],"?/"])
+                stack.append(l)
         elif i==".%":
             a,b=stack.pop(),stack.pop()
             stack.append(b%a)
