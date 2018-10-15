@@ -232,7 +232,7 @@ def interpret(stack,code):
             for j in b:
                 interpret(l,[j])
                 interpret(l,c)
-            stack.append(l)
+            stack.append([str(j) if not isinstance(j,list) else j for j in l])
         elif i=="z[":
             l=[]
             a=stack.pop()
