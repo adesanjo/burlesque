@@ -137,7 +137,6 @@ def interpret(stack,code):
                 l=[]
                 for j in range(min(len(a),len(b))):
                     interpret(l,[b[j],a[j],"?-"])
-                #stack.append(l)
                 stack.append([str(j) if not isinstance(j,list) else j for j in l])
         elif i=="?*":
             a=stack.pop()
